@@ -3,15 +3,15 @@
 <p>Here are all your tasks:</p>
 
 <ul>
-  <% @tasks.each() do |task| %>
+  <% @tasks_permanent_array.each() do |task| %>
 
     <li><%= task.description() %>  -  <%= task.due_date() %></li>
   <% end %>
 </ul>
 
-<p>Create a new task:</p>
 
 <form action="/tasks" method="post">
+  <p>Create a new task:</p>
   <label for="description">Task Description</label>
   <input id="description" name="description" type="text">
 
@@ -19,4 +19,11 @@
   <input id="due_date" name="due_date" type="date">
 
   <button type="submit">Add task</button>
+</form>
+<form action="/remove" method="post">
+  <p>Delete a Task</p>
+  <label for="remove">Exact Task name to remove</label>
+  <input id="remove" name="remove" type="text">
+
+  <button type="submit">Remove task</button>
 </form>

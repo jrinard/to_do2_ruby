@@ -10,18 +10,22 @@ class Task
 
   define_singleton_method(:all) do
     returned_tasks = DB.exec("SELECT * FROM tasks ORDER By due_date;")
-    tasks = []
-    returned_tasks.each() do |task|
-      description = task.fetch("description")
-      list_id = task.fetch("list_id").to_i()
-      due_date = task.fetch("due_date")
-      tasks.push(Task.new({:description => description, :list_id => list_id, :due_date => due_date}))
+    tasks_array = []
+    returned_tasks.each() do |task_from_db|
+      id = task_from_db.fetch("id")
+      description = task_from_db.fetch("description")
+      list_id = task_from_db.fetch("list_id").to_i()
+      due_date = task_from_db.fetch("due_date")
+      tasks_array.push(Task.new({:description => description, :list_id => list_id, :due_date => due_date}))
     end
-    tasks
+    tasks_array
   end
 
   define_method(:save) do
     DB.exec("INSERT INTO tasks (description, list_id, due_date) VALUES ('#{@description}', #{@list_id}, '#{@due_date}');")
+  end
+  define_singleton_method(:remove) do |item|
+    DB.exec("DELETE FROM tasks WHERE UPPER(description) = UPPER('#{item}');")
   end
 
   define_method(:==) do |another_task|
