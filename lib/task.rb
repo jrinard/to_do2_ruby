@@ -28,6 +28,10 @@ class Task
     DB.exec("DELETE FROM tasks WHERE UPPER(description) = UPPER('#{item}');")
   end
 
+  define_singleton_method(:update_date) do | name, date|
+    DB.exec("UPDATE tasks SET due_date = '#{date}' WHERE UPPER(description) = UPPER('#{name}');")
+  end
+
   define_method(:==) do |another_task|
     self.description().==(another_task.description()).&(self.list_id().==(another_task.list_id()))
   end

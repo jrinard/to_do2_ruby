@@ -11,19 +11,34 @@
 
 
 <form action="/tasks" method="post">
-  <p>Create a new task:</p>
+  <div class="form-group"><br>
+  <h4>Create a new task:</h4>
   <label for="description">Task Description</label>
-  <input id="description" name="description" type="text">
+  <input id="description" name="description" type="text" class="form-control">
 
   <label for="due_date">Due Date</label>
-  <input id="due_date" name="due_date" type="date">
+  <input id="due_date" name="due_date" type="date" class="form-control">
 
-  <button type="submit">Add task</button>
+  <button type="submit" class="btn btn-primary">Add task</button>
+</div>
 </form>
 <form action="/remove" method="post">
-  <p>Delete a Task</p>
-  <label for="remove">Exact Task name to remove</label>
-  <input id="remove" name="remove" type="text">
+  <br>
+  <h4>Delete a Task</h4>
+  <label for="remove">Exact Task name to remove <i>(case insensitive)</i></label>
+  <input id="remove" name="remove" type="text" class="form-control">
 
-  <button type="submit">Remove task</button>
+  <button type="submit" class="btn btn-danger">Remove task</button>
+</form>
+
+<form action="/update" method="post">
+  <br>
+  <h4>Update a Task</h4>
+  <label for="update_name">Exact Task Name to Update <i>(case insensitive)</i></label>
+  <input id="update_name" name="update_name" type="text" class="form-control">
+
+  <label for="update_date">Enter New Date</label>
+  <input id="update_date" name="update_date" type="date" class="form-control">
+
+  <button type="submit" class="btn btn-warning">Update task</button>
 </form>

@@ -24,8 +24,14 @@ end
 post("/remove") do
   name_to_remove = params.fetch("remove")
   Task.remove(name_to_remove)
-  # task = Task.new(:description => description, :list_id => 0, :due_date => due_date)
-  # task.save()
+  @tasks_permanent_array = Task.all()
+  erb(:index)
+end
+
+post("/update") do
+  name_to_update = params.fetch("update_name")
+  new_date = params.fetch("update_date")
+  Task.update_date(name_to_update, new_date)
   @tasks_permanent_array = Task.all()
   erb(:index)
 end
