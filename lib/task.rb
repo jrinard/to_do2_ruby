@@ -32,6 +32,10 @@ class Task
     DB.exec("UPDATE tasks SET due_date = '#{date}' WHERE UPPER(description) = UPPER('#{name}');")
   end
 
+  define_singleton_method(:clear) do
+    DB.exec("TRUNCATE TABLE tasks;")
+  end
+
   define_method(:==) do |another_task|
     self.description().==(another_task.description()).&(self.list_id().==(another_task.list_id()))
   end
