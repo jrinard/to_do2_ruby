@@ -1,14 +1,12 @@
-<h1>To Do</h1>
 
-<p>Here are all your tasks:</p>
+<div id="main" class="well">
+  <ul>
+    <% @tasks_permanent_array.each() do |task| %>
 
-<ul>
-  <% @tasks_permanent_array.each() do |task| %>
-
-    <li><%= task.description() %>  -  <%= task.due_date() %></li>
-  <% end %>
-</ul>
-
+      <li>Task:  <%= task.description() %> <span class="pull-right"> Due Date:  <%= task.due_date() %></span></li>
+    <% end %>
+  </ul>
+</div>
 
 <form action="/tasks" method="post">
   <div class="form-group"><br>
@@ -19,16 +17,8 @@
   <label for="due_date">Due Date</label>
   <input id="due_date" name="due_date" type="date" class="form-control">
 
-  <button type="submit" class="btn btn-primary">Add task</button>
+  <button type="submit" class="btn btn-success">Add task</button>
 </div>
-</form>
-<form action="/remove" method="post">
-  <br>
-  <h4>Delete a Task</h4>
-  <label for="remove">Exact Task name to remove <i>(case insensitive)</i></label>
-  <input id="remove" name="remove" type="text" class="form-control">
-
-  <button type="submit" class="btn btn-danger">Remove task</button>
 </form>
 
 <form action="/update" method="post">
@@ -40,11 +30,19 @@
   <label for="update_date">Enter New Date</label>
   <input id="update_date" name="update_date" type="date" class="form-control">
 
-  <button type="submit" class="btn btn-warning">Update task</button>
+  <button type="submit" class="btn btn-primary">Update task</button>
 </form>
 
-<form action="/clear" method="post">
+<form action="/remove" method="post">
   <br>
-  <h4>Delete all Tasks</h4>
-  <button type="submit" class="btn btn-danger">Delete All</button>
+  <h4>Delete a Task</h4>
+  <label for="remove">Exact Task name to remove <i>(case insensitive)</i></label>
+  <input id="remove" name="remove" type="text" class="form-control">
+
+  <button type="submit" class="btn btn-warning">Remove a task</button>
+</form>
+
+<form action="/clear" method="post" class="pull-right">
+  <br>
+  <button type="submit" class="btn btn-danger">Delete All Tasks</button>
 </form>
